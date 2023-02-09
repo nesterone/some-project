@@ -1,0 +1,26 @@
+{
+  "name": "tmdb-app",
+  "version": "1.0.0",
+  "description": "some project template",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint '**/*.{cjs,mjs,js,jsx,ts,tsx}'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whiteadam2/tmdb-clone.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/whiteadam2/tmdb-clone/issues"
+  },
+  "homepage": "https://github.com/whiteadam2/tmdb-clone#readme",
+  "devDependencies": {
+    "eslint": "^8.34.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-react": "^7.32.2"
+  }
+}
