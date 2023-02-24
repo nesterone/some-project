@@ -3,20 +3,27 @@ import { MainContainer } from "../components/MainContainer";
 function Movies({ movies }) {
   return (
     <MainContainer>
-      <div className="pt-10">
-        <h1 className="text-2xl mb-4">Popular movies</h1>
-        <div className="flex flex-wrap">
-          {movies.map((movie) => (
-            <div className="xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full p-4">
-              <img
-                src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-                alt="poster"
-              />
-              <div className="pt-[26px] pr-[10px] pb-[12px] pl-[10px] flex">
-                <h2>{movie.title}</h2>
+      <div className="px-10">
+        <h1 className="mb-4 text-2xl">Popular movies</h1>
+        <div className="flex flex-col sm:flex-row">
+          <div className="shrink-0 grow-0 basis-[260px]">Sidebar</div>
+          <div className="grid grid-cols-1 gap-[30px] pl-[30px] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+            {movies.map((movie) => (
+              <div
+                key={movie.id}
+                className="flex w-full flex-col overflow-hidden rounded-lg border border-cardBgColor shadow-lg"
+              >
+                <img
+                  src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                  alt="poster"
+                  srcSet={`https://image.tmdb.org/t/p/w220_and_h330_face${movie.poster_path} 1x, https://image.tmdb.org/t/p/w440_and_h660_face${movie.poster_path} 2x`}
+                />
+                <div className="flex pt-[26px] pr-[10px] pb-[12px] pl-[10px]">
+                  <h2>{movie.title}</h2>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </MainContainer>

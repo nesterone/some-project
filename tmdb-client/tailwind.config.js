@@ -13,6 +13,7 @@ module.exports = {
       xl: "1240px",
     },
     colors: {
+      cardBgColor: "#e3e3e3",
       tmdbDarkBlue: "#032541",
     },
     extend: {},

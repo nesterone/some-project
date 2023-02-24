@@ -6,7 +6,9 @@ export function MainContainer({ children }) {
   return (
     <>
       <Header />
-      <div className="container mx-auto mt-16">{children}</div>
+      <div className="mx-auto mt-16 max-w-[var(--maxPrimaryPageWidth)] py-10">
+        {children}
+      </div>
       <Footer />
     </>
   );
