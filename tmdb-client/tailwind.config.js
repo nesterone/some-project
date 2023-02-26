@@ -12,11 +12,16 @@ module.exports = {
       lg: "1040px",
       xl: "1240px",
     },
-    colors: {
-      cardBgColor: "#e3e3e3",
-      tmdbDarkBlue: "#032541",
+    extend: {
+      colors: {
+        cardBorderColor: "#e3e3e3",
+        lightBlue: "#01B4E4",
+        tmdbDarkBlue: "#032541",
+      },
+      fontFamily: {
+        sourceSansPro: ["Source Sans Pro", "sans-serif"],
+      },
     },
-    extend: {},
   },
   plugins: [],
 };
