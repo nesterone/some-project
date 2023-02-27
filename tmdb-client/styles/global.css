@@ -5,6 +5,7 @@
 @tailwind utilities;
 
 @layer base {
+
     :root {
         --maxPrimaryPageWidth: 1400px;
     }
