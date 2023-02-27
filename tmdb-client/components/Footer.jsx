@@ -4,7 +4,7 @@ import { NavBlock } from "./NavBlock";
 export function Footer(props) {
   return (
     <footer className="bg-tmdbDarkBlue">
-      <div className="m-auto flex max-w-[var(--maxPrimaryPageWidth)] flex-wrap items-start justify-start gap-10 py-20 pl-10 text-lg text-white  ">
+      <div className="m-auto flex max-w-[var(--maxPrimaryPageWidth)] flex-wrap items-start justify-start gap-10 py-20 pl-10 text-lg text-white md:justify-center  ">
         <div className="relative flex min-w-[120px] flex-col items-end justify-end gap-4">
           <img
             src="/images/tmdb-logo2.svg"

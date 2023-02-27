@@ -14,6 +14,8 @@ function Movies({ movies }) {
                 id={movie.id}
                 posterPath={movie.poster_path}
                 title={movie.title}
+                date={movie.release_date}
+                desc={movie.overview}
               />
             ))}
           </div>
