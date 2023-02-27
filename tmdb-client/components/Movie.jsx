@@ -1,12 +1,9 @@
 import React from "react";
 import { humanReadableDate } from "../utils/humanReadableDate";
 
-export function Movie({ id, posterPath, title, date, desc }) {
+export function Movie({ posterPath, title, date, desc }) {
   return (
-    <div
-      key={id}
-      className="flex h-[141px] w-full overflow-hidden rounded-lg border border-cardBorderColor shadow-lg sm:h-auto sm:flex-col"
-    >
+    <div className="flex h-[141px] w-full overflow-hidden rounded-lg border border-cardBorderColor shadow-lg sm:h-auto sm:flex-col">
       <img
         className="min-w-[94px] sm:hidden"
         src={`https://image.tmdb.org/t/p/original${posterPath}`}

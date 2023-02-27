@@ -1,12 +1,12 @@
 import React from "react";
 import { Logo } from "./Logo";
 import { Menu } from "./Menu";
-import { BurgerMenu } from "./BurgerMenu";
+import { BurgerMenu } from "./burger-menu/BurgerMenu";
 
 export function Header(props) {
   return (
     <header className="fixed top-0 left-0 h-16 w-full bg-tmdbDarkBlue">
-      <div className="mx-auto flex h-full max-w-[var(--maxPrimaryPageWidth)] items-center justify-between px-10">
+      <div className="mx-auto flex h-full max-w-[var(--maxPrimaryPageWidth)] items-center justify-between px-5 sm:px-10">
         <BurgerMenu />
         <div className="flex w-1/3 items-center justify-center sm:w-auto sm:justify-between">
           <Logo />
