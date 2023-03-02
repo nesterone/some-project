@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { BurgerIcon } from "./BurgerIcon";
 import { CrossIcon } from "./CrossIcon";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
+import { MenuList } from "./MenuList";
 
 export function BurgerMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,13 +22,7 @@ export function BurgerMenu() {
         <CrossIcon visibility={!isOpen} onClick={() => setIsOpen(false)} />
       </div>
       <div className={menuClasses}>
-        <ol className="m-4">
-          <li>Some item</li>
-          <li>Some item</li>
-          <li>Some item</li>
-          <li>Some item</li>
-          <li>Some item</li>
-        </ol>
+        <MenuList />
       </div>
     </div>
   );
