@@ -1,12 +1,24 @@
 import React from "react";
+import { MenuItem } from "./MenuItem";
+import { MenuSubItem } from "./MenuSubItem";
 
-export function Menu(props) {
+export function Menu() {
   return (
     <ul className="ml-8 hidden font-semibold text-white sm:flex">
-      <li className="mr-2 p-2">Movies</li>
-      <li className="mr-2 p-2">TV Shows</li>
-      <li className="mr-2 p-2">People</li>
-      <li className="mr-2 p-2">More</li>
+      <MenuItem name="Movies">
+        <MenuSubItem name="Popular" url="" />
+        <MenuSubItem name="Now Playing" url="" />
+        <MenuSubItem name="Upcoming" url="" />
+        <MenuSubItem name="Top Rated" url="" />
+      </MenuItem>
+      <MenuItem name="TV Shows">
+        <MenuSubItem name="Popular" url="" />
+        <MenuSubItem name="Top Rated" url="" />
+        <MenuSubItem name="On TV" url="" />
+        <MenuSubItem name="Airing Today" url="" />
+      </MenuItem>
+      <MenuItem name="People" />
+      <MenuItem name="More" />
     </ul>
   );
 }
