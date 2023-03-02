@@ -3,25 +3,19 @@ import { Movie } from "../components/Movie";
 
 function Movies({ movies }) {
   return (
-    <MainContainer>
-      <div className="px-5 sm:px-10">
-        <h1 className="mb-4 text-2xl font-semibold">Popular Movies</h1>
-        <div className="flex flex-col sm:flex-row">
-          <div className="shrink-0 grow-0 basis-[260px]">Sidebar</div>
-          <div className="grid grid-cols-1 gap-[30px] sm:grid-cols-2 sm:pl-[30px] md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-            {movies.map((movie) => (
-              <Movie
-                key={movie.id}
-                posterPath={movie.poster_path}
-                title={movie.title}
-                date={movie.release_date}
-                desc={movie.overview}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-    </MainContainer>
+    <MainContainer
+      title="Popular Movies"
+      sidebar="Sidebar"
+      content={movies.map((movie) => (
+        <Movie
+          key={movie.id}
+          posterPath={movie.poster_path}
+          title={movie.title}
+          date={movie.release_date}
+          desc={movie.overview}
+        />
+      ))}
+    />
   );
 }
 
