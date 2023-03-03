@@ -22,20 +22,20 @@ export function MenuList(props) {
         onClick={() => handleClick(1)}
         subMenuVisibility={subMenuVisibility[1]}
       >
-        <MenuSubItem name="Popular" url="" />
-        <MenuSubItem name="Top Rated" url="" />
-        <MenuSubItem name="Upcoming" url="" />
-        <MenuSubItem name="Now Playing" url="" />
+        <MenuSubItem name="Popular" url="/movie" />
+        <MenuSubItem name="Now Playing" url="/movie/now-playing" />
+        <MenuSubItem name="Upcoming" url="/movie/upcoming" />
+        <MenuSubItem name="Top Rated" url="/movie/top-rated" />
       </MenuItem>
       <MenuItem
         name="TV Shows"
         onClick={() => handleClick(2)}
         subMenuVisibility={subMenuVisibility[2]}
       >
-        <MenuSubItem name="Popular" url="" />
-        <MenuSubItem name="Top Rated" url="" />
-        <MenuSubItem name="On TV" url="" />
-        <MenuSubItem name="Airing Today" url="" />
+        <MenuSubItem name="Test" url="" />
+        <MenuSubItem name="Test" url="" />
+        <MenuSubItem name="Test" url="" />
+        <MenuSubItem name="Test" url="" />
       </MenuItem>
     </ol>
   );
