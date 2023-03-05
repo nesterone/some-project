@@ -1,9 +1,9 @@
-import { MainContainer } from "../../components/MainContainer";
+import { MainLayout } from "../../components/MainLayout";
 import { Movie } from "../../components/Movie";
 
 function NowPlaying({ movies }) {
   return (
-    <MainContainer
+    <MainLayout
       title="Now Playing Movies"
       sidebar="Sidebar"
       content={movies.map((movie) => (
