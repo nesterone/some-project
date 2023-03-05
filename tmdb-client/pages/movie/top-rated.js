@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useInfinityScroll } from "../../hooks/useInfinityScroll";
 
 const url =
-  "https://api.themoviedb.org/3/movie/top-rated?api_key=da929b028e582d822da2b29c607baadf&language=en-US";
+  "https://api.themoviedb.org/3/movie/top_rated?api_key=da929b028e582d822da2b29c607baadf&language=en-US";
 
 function TopRated({ startPage }) {
   const [movies, setMovies] = useState(startPage);
