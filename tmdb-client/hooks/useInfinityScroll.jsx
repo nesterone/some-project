@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 export function useInfinityScroll(getContent) {
   const [page, setPage] = useState(1);
   const ref = useRef(null);
   const pageRef = useRef(page);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const intersectionObserver = new IntersectionObserver((entries) => {
       if (entries[0].intersectionRatio <= 0 || pageRef.current === 1) return;
       setPage(pageRef.current + 1);

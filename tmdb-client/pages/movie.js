@@ -1,6 +1,6 @@
 import { MainLayout } from "../components/MainLayout";
 import { Movie } from "../components/Movie";
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useState } from "react";
 import { useInfinityScroll } from "../hooks/useInfinityScroll";
 
 const url =
