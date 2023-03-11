@@ -1,6 +1,6 @@
 import React from "react";
 
-export function MenuItem({ name, onClick, subMenuVisibility, children }) {
+export function BurgerMenuItem({ name, onClick, subMenuVisibility, children }) {
   return (
     <li className="mb-4">
       <h3 className="text-xl font-medium" onClick={onClick}>
