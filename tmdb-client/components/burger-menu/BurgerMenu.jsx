@@ -18,8 +18,11 @@ export function BurgerMenu() {
   return (
     <div ref={ref}>
       <div className="flex w-10 items-center justify-center">
-        <BurgerIcon visibility={isOpen} onClick={() => setIsOpen(true)} />
-        <CrossIcon visibility={!isOpen} onClick={() => setIsOpen(false)} />
+        {isOpen ? (
+          <CrossIcon onClick={() => setIsOpen(false)} />
+        ) : (
+          <BurgerIcon onClick={() => setIsOpen(true)} />
+        )}
       </div>
       <div className={menuClasses}>
         <MenuList />
