@@ -5,7 +5,10 @@ export function useInfinityScroll(getContent) {
   const ref = useRef(null);
   const pageRef = useRef(page);
 
-  useLayoutEffect(() => {
+  const useIsomorphicLayoutEffect =
+    typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
+  useIsomorphicLayoutEffect(() => {
     const intersectionObserver = new IntersectionObserver((entries) => {
       if (entries[0].intersectionRatio <= 0 || pageRef.current === 1) return;
       setPage(pageRef.current + 1);
