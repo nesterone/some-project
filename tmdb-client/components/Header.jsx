@@ -13,7 +13,7 @@ export function Header(props) {
       id: 1,
       name: "Movies",
       subItems: [
-        { id: 1, name: "Popular", url: "/movie" },
+        { id: 1, name: "Popular", url: "/movie/popular" },
         { id: 2, name: "Now Playing", url: "/movie/now-playing" },
         { id: 3, name: "Upcoming", url: "/movie/upcoming" },
         { id: 4, name: "Top Rated", url: "/movie/top-rated" },
