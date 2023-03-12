@@ -7,6 +7,8 @@ import { getFullURL } from "../../utils/getFullURL";
 
 function Category({ startPage }) {
   const [movies, setMovies] = useState([]);
+  const router = useRouter();
+  const { cat } = router.query;
 
   function getNextContent(page) {
     fetch(getFullURL(cat, page)).then((response) =>
@@ -23,8 +25,6 @@ function Category({ startPage }) {
     setPage(1);
   }, [startPage]);
 
-  const router = useRouter();
-  const { cat } = router.query;
   const title = {
     popular: "Popular Movies",
     "top-rated": "Top Rated Movies",
