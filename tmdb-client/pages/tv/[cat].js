@@ -11,7 +11,7 @@ function Category({ startPage }) {
   const { cat } = router.query;
 
   function getNextContent(page) {
-    const url = getFullURL("movie", cat, page);
+    const url = getFullURL("tv", cat, page);
     fetch(url).then((response) =>
       response
         .json()
@@ -27,10 +27,10 @@ function Category({ startPage }) {
   }, [startPage]);
 
   const title = {
-    popular: "Popular Movies",
-    "top-rated": "Top Rated Movies",
-    upcoming: "Upcoming Movies",
-    "now-playing": "Now Playing Movies",
+    popular: "Popular TV Shows",
+    "airing-today": "TV Shows Airing Today",
+    "on-the-air": "Currently Airing TV Shows",
+    "top-rated": "Top Rated TV Shows",
   };
 
   return (
@@ -43,8 +43,8 @@ function Category({ startPage }) {
         <Movie
           key={movie.id}
           posterPath={movie.poster_path}
-          title={movie.title}
-          date={movie.release_date}
+          title={movie.name}
+          date={movie.first_air_date}
           desc={movie.overview}
         />
       ))}
@@ -55,7 +55,8 @@ function Category({ startPage }) {
 export default Category;
 
 export async function getStaticProps({ params }) {
-  const url = getFullURL("movie", params.cat, 1);
+  const url = getFullURL("tv", params.cat, 1);
+  console.log(url);
   const response = await fetch(url);
   const movies = await response.json();
 
@@ -68,9 +69,9 @@ export async function getStaticPaths() {
   return {
     paths: [
       { params: { cat: "popular" } },
+      { params: { cat: "airing-today" } },
+      { params: { cat: "on-the-air" } },
       { params: { cat: "top-rated" } },
-      { params: { cat: "upcoming" } },
-      { params: { cat: "now-playing" } },
     ],
     fallback: false, // can also be true or 'blocking'
   };

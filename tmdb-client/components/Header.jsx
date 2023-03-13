@@ -22,7 +22,12 @@ export function Header(props) {
     {
       id: 2,
       name: "TV Shows",
-      subItems: [],
+      subItems: [
+        { id: 1, name: "Popular", url: "/tv/popular" },
+        { id: 2, name: "Airing Today", url: "/tv/airing-today" },
+        { id: 3, name: "On TV", url: "/tv/on-the-air" },
+        { id: 4, name: "Top Rated", url: "/tv/top-rated" },
+      ],
     },
     {
       id: 3,
