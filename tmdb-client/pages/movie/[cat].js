@@ -4,6 +4,7 @@ import { MainLayout } from "../../components/MainLayout";
 import { Movie } from "../../components/Movie";
 import { useInfinityScroll } from "../../hooks/useInfinityScroll";
 import { getFullURL } from "../../utils/getFullURL";
+import { Sidebar } from "../../components/Sidebar";
 
 function Category({ startPage }) {
   const [movies, setMovies] = useState([]);
@@ -37,7 +38,7 @@ function Category({ startPage }) {
     <MainLayout
       ref={ref}
       title={title[cat]}
-      sidebar="Sidebar"
+      sidebar={<Sidebar />}
       paginationHandler={() => setPage(page + 1)}
       content={movies.map((movie) => (
         <Movie

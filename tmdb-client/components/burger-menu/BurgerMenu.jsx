@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { BurgerMenuItem } from "./BurgerMenuItem";
-import { BurgerMenuSubItem } from "./BurgerMenuSubItem";
+import Link from "next/link";
 
 export function BurgerMenu({ items }) {
   const [subMenuVisibility, setSubMenuVisibility] = useState({
@@ -34,5 +33,24 @@ export function BurgerMenu({ items }) {
         </BurgerMenuItem>
       ))}
     </ol>
+  );
+}
+
+function BurgerMenuItem({ name, onClick, subMenuVisibility, children }) {
+  return (
+    <li className="mb-4">
+      <h3 className="text-xl font-medium" onClick={onClick}>
+        {name}
+      </h3>
+      <ol className={subMenuVisibility ? "" : "hidden"}>{children}</ol>
+    </li>
+  );
+}
+
+function BurgerMenuSubItem({ name, url }) {
+  return (
+    <li className="text-md mt-1 font-light">
+      <Link href={url}>{name}</Link>
+    </li>
   );
 }

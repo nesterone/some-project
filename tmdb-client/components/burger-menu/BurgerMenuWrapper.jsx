@@ -1,7 +1,5 @@
 import React, { useRef, useState } from "react";
 import classNames from "classnames";
-import { BurgerIcon } from "./BurgerIcon";
-import { CrossIcon } from "./CrossIcon";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
 
 export function BurgerMenuWrapper({ children }) {
@@ -25,5 +23,43 @@ export function BurgerMenuWrapper({ children }) {
       </div>
       <div className={menuClasses}>{children}</div>
     </div>
+  );
+}
+
+function BurgerIcon({ onClick }) {
+  function handleClick(e) {
+    e.stopPropagation();
+    onClick();
+  }
+
+  return (
+    <div className="space-y-1.5" onClick={handleClick}>
+      <span className="block h-0.5 w-6 bg-white"></span>
+      <span className="block h-0.5 w-6 bg-white"></span>
+      <span className="block h-0.5 w-6 bg-white"></span>
+    </div>
+  );
+}
+
+function CrossIcon({ onClick }) {
+  function handleClick(e) {
+    e.stopPropagation();
+    onClick();
+  }
+
+  return (
+    <svg
+      onClick={handleClick}
+      className="h-8 w-8 text-white"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <line x1="18" y1="6" x2="6" y2="18" />
+      <line x1="6" y1="6" x2="18" y2="18" />
+    </svg>
   );
 }

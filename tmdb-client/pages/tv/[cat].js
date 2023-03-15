@@ -56,7 +56,6 @@ export default Category;
 
 export async function getStaticProps({ params }) {
   const url = getFullURL("tv", params.cat, 1);
-  console.log(url);
   const response = await fetch(url);
   const movies = await response.json();
 
