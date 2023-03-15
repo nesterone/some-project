@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { FilterLayout } from "./FilterLayout";
+import Slider from "./Slider";
 
 export function Sidebar(props) {
+  const [rating, setRating] = useState([20, 80]);
+
   return (
     <div>
       <FilterLayout name="Sort">
@@ -26,7 +29,7 @@ export function Sidebar(props) {
           <option value="title.desc">Title (Z-A)</option>
         </select>
 
-        <div>
+        <div className="hidden">
           <label
             htmlFor="customRange3"
             className="mb-2 inline-block text-neutral-700 dark:text-neutral-200"
@@ -35,13 +38,22 @@ export function Sidebar(props) {
           </label>
           <input
             type="range"
-            className="transparent h-1.5 w-full cursor-pointer appearance-none rounded-lg border-transparent bg-neutral-200"
-            min="0"
+            className="transparent h-1.5 w-full cursor-pointer rounded-lg border-transparent bg-neutral-200"
+            min="1"
             max="5"
-            step="0.5"
+            step="1"
             id="customRange3"
           />
         </div>
+        <Slider
+          min={0}
+          max={100}
+          step={20}
+          marks={20}
+          minDistance={20}
+          handleChange={(value) => setRating(value)}
+          value={rating}
+        />
       </FilterLayout>
     </div>
   );
