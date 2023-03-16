@@ -4,7 +4,7 @@ import { MainLayout } from "../../components/MainLayout";
 import { Movie } from "../../components/Movie";
 import { useInfinityScroll } from "../../hooks/useInfinityScroll";
 import { getFullURL } from "../../utils/getFullURL";
-import { Sidebar } from "../../components/Sidebar";
+import { Sidebar } from "../../components/sidebar/Sidebar";
 
 function Category({ startPage }) {
   const [movies, setMovies] = useState([]);

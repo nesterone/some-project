@@ -7,7 +7,7 @@ function Slider({ value, handleChange, step, min, max, minDistance, marks }) {
     <ReactSlider
       value={value}
       onChange={handleChange}
-      className="my-4 h-4 w-full"
+      className="my-8 h-4 w-full"
       orientation="horizontal"
       step={step}
       min={min}
@@ -32,14 +32,14 @@ function Slider({ value, handleChange, step, min, max, minDistance, marks }) {
             className={cn({
               "top-1/2 h-1/4 -translate-y-1/2 rounded-full": true,
               "bg-gray-200": isMulti ? isFirst || isLast : isLast,
-              "bg-lightBlue": isMulti ? !isFirst || !isLast : isFirst,
+              "bg-lightBlue": isMulti ? !isFirst && !isLast : isFirst,
             })}
           ></div>
         );
       }}
       renderMark={(props) => {
         return (
-          <div {...props} className="top-3 font-light text-gray-300">
+          <div {...props} className="top-3 font-light text-gray-400">
             {props.key}
           </div>
         );

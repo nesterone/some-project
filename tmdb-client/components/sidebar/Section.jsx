@@ -1,8 +1,8 @@
 import React from "react";
 
-export function FilterLayout({ name, children }) {
+export function Section({ name, children }) {
   return (
-    <details className="group cursor-pointer rounded-lg border border-cardBorderColor shadow-lg">
+    <details className="group mb-4 cursor-pointer rounded-lg border border-cardBorderColor shadow-md">
       <summary className="my-3 mx-4 list-none  text-lg font-medium ">
         <div className="flex items-center justify-between">
           <span>{name}</span>
