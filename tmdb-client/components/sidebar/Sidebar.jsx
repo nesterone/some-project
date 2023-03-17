@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Section } from "./Section";
 import Select from "react-tailwindcss-select";
 import Slider from "./Slider";
+import { MultiSelectButtons } from "./MultiSelectButtons";
 
 export function Sidebar(props) {
   const [rating, setRating] = useState([20, 80]);
@@ -12,8 +13,27 @@ export function Sidebar(props) {
     label: "Popularity Ascending",
   });
 
+  const [genres, setGenres] = useState([
+    { value: "val1", label: "Drama", selected: false },
+    { value: "val2", label: "Comedy", selected: false },
+    { value: "val3", label: "Movie", selected: false },
+    { value: "val4", label: "Cinema", selected: false },
+    { value: "val1", label: "Drama", selected: false },
+    { value: "val2", label: "Comedy", selected: false },
+    { value: "val3", label: "Movie", selected: false },
+    { value: "val4", label: "Cinema", selected: false },
+  ]);
+
   const handleSortByChange = (value) => {
     setSortBy(value);
+  };
+
+  const handleGenresChange = (event) => {
+    const newGenres = genres.map((genre) => {
+      if (event.target.value === genre.value) genre.selected = !genre.selected;
+      return genre;
+    });
+    setGenres(newGenres);
   };
 
   const options = [
@@ -30,15 +50,24 @@ export function Sidebar(props) {
   return (
     <div>
       <Section name="Sort">
-        <h3 className="mb-2 font-light">Sort Results By</h3>
-        <Select
-          isSearchable={true}
-          primaryColor="cyan"
-          value={sortBy}
-          onChange={handleSortByChange}
-          options={options}
+        <div className="mb-4">
+          <h3 className="mb-2 font-light">Sort Results By</h3>
+          <Select
+            isSearchable={true}
+            value={sortBy}
+            primaryColor="cyan"
+            onChange={handleSortByChange}
+            options={options}
+          />
+        </div>
+
+        <MultiSelectButtons
+          title="Select Genre"
+          options={genres}
+          handleChange={handleGenresChange}
         />
       </Section>
+
       <Section name="Filters">
         <Slider
           min={0}
