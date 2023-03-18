@@ -18,10 +18,10 @@ export function Sidebar(props) {
     { value: "val2", label: "Comedy", selected: false },
     { value: "val3", label: "Movie", selected: false },
     { value: "val4", label: "Cinema", selected: false },
-    { value: "val1", label: "Drama", selected: false },
-    { value: "val2", label: "Comedy", selected: false },
-    { value: "val3", label: "Movie", selected: false },
-    { value: "val4", label: "Cinema", selected: false },
+    { value: "val5", label: "Horror", selected: false },
+    { value: "val6", label: "Fiction", selected: false },
+    { value: "val7", label: "Documental", selected: false },
+    { value: "val8", label: "Fantasy", selected: false },
   ]);
 
   const handleSortByChange = (value) => {
