@@ -91,7 +91,7 @@ export function Sidebar(props) {
 
       <Section name="Where To Search"></Section>
 
-      <button className="w-full rounded-full bg-lightBlue py-3 font-semibold text-white hover:bg-tmdbDarkBlue">
+      <button className="mb-4 w-full rounded-full bg-lightBlue py-3 font-semibold text-white hover:bg-tmdbDarkBlue">
         Search
       </button>
     </div>

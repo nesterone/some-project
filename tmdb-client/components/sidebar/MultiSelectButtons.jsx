@@ -12,7 +12,8 @@ export function MultiSelectButtons({ options, handleChange, title }) {
               "box-content inline-block rounded-full px-2 py-1 text-gray-400 outline outline-1 outline-gray-400" +
                 " hover:bg-lightBlue hover:text-white hover:outline-0 ",
               {
-                "bg-lightBlue text-white outline-0": option.selected,
+                "bg-lightBlue text-white outline-none outline-0":
+                  option.selected,
                 "bg-white": !option.selected,
               }
             )}
