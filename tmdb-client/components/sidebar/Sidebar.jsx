@@ -7,12 +7,13 @@ import { SectionBlock } from "./SectionBlock";
 import Router from "next/router";
 
 export function Sidebar({ category }) {
+  const [queryParams, setQueryParams] = useState({});
+
   const [rating, setRating] = useState([20, 80]);
   const [runtime, setRuntime] = useState(60);
-
   const [sortBy, setSortBy] = useState({
-    value: "popularity.asc",
-    label: "Popularity Ascending",
+    value: "popularity.desc",
+    label: "Popularity Descending",
   });
 
   const [genres, setGenres] = useState([
@@ -28,6 +29,7 @@ export function Sidebar({ category }) {
 
   const handleSortByChange = (option) => {
     setSortBy(option);
+    setQueryParams({ ...queryParams, sort_by: option.value });
   };
 
   const handleGenresChange = (event) => {
@@ -101,7 +103,7 @@ export function Sidebar({ category }) {
         onClick={() => {
           Router.push({
             pathname: `/discover/${category}`,
-            query: { sort_by: sortBy.value },
+            query: queryParams,
           });
         }}
         className="mb-4 w-full rounded-full bg-lightBlue py-3 font-semibold text-white hover:bg-tmdbDarkBlue"

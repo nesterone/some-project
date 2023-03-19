@@ -13,7 +13,6 @@ function Category({ startPage }) {
 
   function updateContent(page) {
     const url = discoverApiUrl(category, searchParams, page);
-    console.log(url);
     fetch(url).then((response) =>
       response
         .json()
