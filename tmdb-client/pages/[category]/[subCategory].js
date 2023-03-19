@@ -3,16 +3,17 @@ import { useRouter } from "next/router";
 import { MainLayout } from "../../components/MainLayout";
 import { Movie } from "../../components/Movie";
 import { useInfinityScroll } from "../../hooks/useInfinityScroll";
-import { getFullURL } from "../../utils/getFullURL";
 import { Sidebar } from "../../components/sidebar/Sidebar";
+import { generalApiUrl } from "../../utils/generalApiUrl";
+import { titlesGenerator } from "../../utils/titlesGenerator";
 
 function Category({ startPage }) {
   const [movies, setMovies] = useState([]);
   const router = useRouter();
-  const { cat } = router.query;
+  const { category, subCategory } = router.query;
 
-  function getNextContent(page) {
-    const url = getFullURL("movie", cat, page);
+  function updateContent(page) {
+    const url = generalApiUrl(category, subCategory, page);
     fetch(url).then((response) =>
       response
         .json()
@@ -20,32 +21,27 @@ function Category({ startPage }) {
     );
   }
 
-  const { page, setPage, ref } = useInfinityScroll(getNextContent);
+  const { page, setPage, ref } = useInfinityScroll(updateContent);
 
   useEffect(() => {
     setMovies(startPage);
     setPage(1);
   }, [startPage]);
 
-  const title = {
-    popular: "Popular Movies",
-    "top-rated": "Top Rated Movies",
-    upcoming: "Upcoming Movies",
-    "now-playing": "Now Playing Movies",
-  };
-
   return (
     <MainLayout
       ref={ref}
-      title={title[cat]}
-      sidebar={<Sidebar />}
+      title={titlesGenerator(category, subCategory)}
+      sidebar={<Sidebar category={category} />}
       paginationHandler={() => setPage(page + 1)}
       content={movies.map((movie) => (
         <Movie
           key={movie.id}
           posterPath={movie.poster_path}
-          title={movie.title}
-          date={movie.release_date}
+          title={category === "movie" ? movie.title : movie.name}
+          date={
+            category === "movie" ? movie.release_date : movie.first_air_date
+          }
           desc={movie.overview}
         />
       ))}
@@ -56,7 +52,7 @@ function Category({ startPage }) {
 export default Category;
 
 export async function getStaticProps({ params }) {
-  const url = getFullURL("movie", params.cat, 1);
+  const url = generalApiUrl(params.category, params.subCategory);
   const response = await fetch(url);
   const movies = await response.json();
 
@@ -68,10 +64,14 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
   return {
     paths: [
-      { params: { cat: "popular" } },
-      { params: { cat: "top-rated" } },
-      { params: { cat: "upcoming" } },
-      { params: { cat: "now-playing" } },
+      { params: { category: "movie", subCategory: "popular" } },
+      { params: { category: "movie", subCategory: "top-rated" } },
+      { params: { category: "movie", subCategory: "upcoming" } },
+      { params: { category: "movie", subCategory: "now-playing" } },
+      { params: { category: "tv", subCategory: "popular" } },
+      { params: { category: "tv", subCategory: "airing-today" } },
+      { params: { category: "tv", subCategory: "on-the-air" } },
+      { params: { category: "tv", subCategory: "top-rated" } },
     ],
     fallback: false, // can also be true or 'blocking'
   };

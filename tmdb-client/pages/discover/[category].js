@@ -3,15 +3,17 @@ import { useRouter } from "next/router";
 import { MainLayout } from "../../components/MainLayout";
 import { Movie } from "../../components/Movie";
 import { useInfinityScroll } from "../../hooks/useInfinityScroll";
-import { getFullURL } from "../../utils/getFullURL";
+import { Sidebar } from "../../components/sidebar/Sidebar";
+import { discoverApiUrl } from "../../utils/discoverApiUrl";
 
 function Category({ startPage }) {
   const [movies, setMovies] = useState([]);
   const router = useRouter();
-  const { cat } = router.query;
+  const { category, ...searchParams } = router.query;
 
-  function getNextContent(page) {
-    const url = getFullURL("tv", cat, page);
+  function updateContent(page) {
+    const url = discoverApiUrl(category, searchParams, page);
+    console.log(url);
     fetch(url).then((response) =>
       response
         .json()
@@ -19,32 +21,27 @@ function Category({ startPage }) {
     );
   }
 
-  const { page, setPage, ref } = useInfinityScroll(getNextContent);
+  const { page, setPage, ref } = useInfinityScroll(updateContent);
 
   useEffect(() => {
     setMovies(startPage);
     setPage(1);
   }, [startPage]);
 
-  const title = {
-    popular: "Popular TV Shows",
-    "airing-today": "TV Shows Airing Today",
-    "on-the-air": "Currently Airing TV Shows",
-    "top-rated": "Top Rated TV Shows",
-  };
-
   return (
     <MainLayout
       ref={ref}
-      title={title[cat]}
-      sidebar="Sidebar"
+      title="Search Result"
+      sidebar={<Sidebar category={category} />}
       paginationHandler={() => setPage(page + 1)}
       content={movies.map((movie) => (
         <Movie
           key={movie.id}
           posterPath={movie.poster_path}
-          title={movie.name}
-          date={movie.first_air_date}
+          title={category === "movie" ? movie.title : movie.name}
+          date={
+            category === "movie" ? movie.release_date : movie.first_air_date
+          }
           desc={movie.overview}
         />
       ))}
@@ -54,24 +51,13 @@ function Category({ startPage }) {
 
 export default Category;
 
-export async function getStaticProps({ params }) {
-  const url = getFullURL("tv", params.cat, 1);
+export async function getServerSideProps({ query }) {
+  const { category, ...searchParams } = query;
+  const url = discoverApiUrl(category, searchParams);
   const response = await fetch(url);
   const movies = await response.json();
 
   return {
     props: { startPage: movies.results }, // will be passed to the page component as props
-  };
-}
-
-export async function getStaticPaths() {
-  return {
-    paths: [
-      { params: { cat: "popular" } },
-      { params: { cat: "airing-today" } },
-      { params: { cat: "on-the-air" } },
-      { params: { cat: "top-rated" } },
-    ],
-    fallback: false, // can also be true or 'blocking'
   };
 }

@@ -13,9 +13,7 @@ export function Section({ name, children }) {
           />
         </div>
       </summary>
-      <div className="border-t border-cardBorderColor px-4 py-3">
-        {children}
-      </div>
+      {children}
     </details>
   );
 }

@@ -3,8 +3,10 @@ import { Section } from "./Section";
 import Select from "react-tailwindcss-select";
 import Slider from "./Slider";
 import { MultiSelectButtons } from "./MultiSelectButtons";
+import { SectionBlock } from "./SectionBlock";
+import Router from "next/router";
 
-export function Sidebar(props) {
+export function Sidebar({ category }) {
   const [rating, setRating] = useState([20, 80]);
   const [runtime, setRuntime] = useState(60);
 
@@ -24,8 +26,8 @@ export function Sidebar(props) {
     { value: "val8", label: "Fantasy", selected: false },
   ]);
 
-  const handleSortByChange = (value) => {
-    setSortBy(value);
+  const handleSortByChange = (option) => {
+    setSortBy(option);
   };
 
   const handleGenresChange = (event) => {
@@ -50,8 +52,7 @@ export function Sidebar(props) {
   return (
     <div>
       <Section name="Sort">
-        <div className="mb-4">
-          <h3 className="mb-2 font-light">Sort Results By</h3>
+        <SectionBlock name="Sort Results By">
           <Select
             isSearchable={true}
             value={sortBy}
@@ -59,39 +60,52 @@ export function Sidebar(props) {
             onChange={handleSortByChange}
             options={options}
           />
-        </div>
-
-        <MultiSelectButtons
-          title="Select Genre"
-          options={genres}
-          handleChange={handleGenresChange}
-        />
+        </SectionBlock>
       </Section>
 
       <Section name="Filters">
-        <Slider
-          min={0}
-          max={100}
-          step={20}
-          marks={20}
-          minDistance={20}
-          handleChange={(value) => setRuntime(value)}
-          value={runtime}
-        />
-        <Slider
-          min={0}
-          max={100}
-          step={20}
-          marks={20}
-          minDistance={20}
-          handleChange={(value) => setRating(value)}
-          value={rating}
-        />
+        <SectionBlock name="Show Me"></SectionBlock>
+
+        <SectionBlock name="Genres">
+          <MultiSelectButtons
+            options={genres}
+            handleChange={handleGenresChange}
+          />
+        </SectionBlock>
+
+        <SectionBlock name="Sliders">
+          <Slider
+            min={0}
+            max={100}
+            step={20}
+            marks={20}
+            minDistance={20}
+            handleChange={(value) => setRuntime(value)}
+            value={runtime}
+          />
+          <Slider
+            min={0}
+            max={100}
+            step={20}
+            marks={20}
+            minDistance={20}
+            handleChange={(value) => setRating(value)}
+            value={rating}
+          />
+        </SectionBlock>
       </Section>
 
       <Section name="Where To Search"></Section>
 
-      <button className="mb-4 w-full rounded-full bg-lightBlue py-3 font-semibold text-white hover:bg-tmdbDarkBlue">
+      <button
+        onClick={() => {
+          Router.push({
+            pathname: `/discover/${category}`,
+            query: { sort_by: sortBy.value },
+          });
+        }}
+        className="mb-4 w-full rounded-full bg-lightBlue py-3 font-semibold text-white hover:bg-tmdbDarkBlue"
+      >
         Search
       </button>
     </div>

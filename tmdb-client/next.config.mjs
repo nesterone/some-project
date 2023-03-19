@@ -6,8 +6,8 @@ const nextConfig = {
     async redirects() {
         return [
             {
-                source: '/movie',
-                destination: '/movie/popular',
+                source: '/[category]',
+                destination: '/[category]/popular',
                 permanent: true,
             },
         ]
